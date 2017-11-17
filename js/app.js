@@ -1,21 +1,38 @@
 window.onload = function () {
 //evento para ocultar y añadir lista//
-var newList = document.getElementById("addList");
-  newList.addEventListener("click", addList);
+var showList = document.getElementById("addList");
+  showList.addEventListener("click", addList);
+var save = document.getElementById("save");
+  save.addEventListener("click", newList);
 };
 
 function addList() {
-  var showList = document.getElementById("addList");
-  showList.style.display="none";
-      var container = document.createElement("form");
-      var input= document.createElement("input");
-      var button= document.createElement("input");
-      button.setAttribute("type","button");
-      button.setAttribute("value","Guardar");
-      button.style.display="block"
-        container.appendChild(input);
-        container.appendChild(button);
-var body = document.body;
-var script = body.getElementsByTagName('script')[0];
-body.insertBefore(container,script);
+  var buttonHidden = document.getElementById("addList");
+  buttonHidden.style.display="none";
+  var showForm = document.getElementById("newForm");
+  showForm.style.display="inline-block";
+};
+
+function newList() {
+  var textArea= document.getElementById("textArea").value;
+  var container=document.createElement("div");
+  var title=document.createElement("p");
+  var text= document.createTextNode(textArea);
+  var form= document.getElementById("newForm")
+  container.appendChild(title);
+  title.appendChild(text);
+  document.body.insertBefore(container,form);
+
+  container.style.display="inline-block";
+  var newClick = document.createElement("a");
+  var tarea= document.createTextNode("añadir tarea");
+  newClick.appendChild(tarea);
+  container.appendChild(newClick);
+  newClick.setAttribute("onclick","añadir()")
+};
+
+
+function añadir() {
+  alert("hola")
+
 };
