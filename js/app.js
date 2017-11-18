@@ -18,20 +18,23 @@ function newList() {
   var container=document.createElement("div");
   container.setAttribute("id","container");
   var title=document.createElement("p");
+  title.classList.add("tittle");
   var text= document.createTextNode(textArea);
   var form= document.getElementById("newForm")
   container.appendChild(title);
   title.appendChild(text);
-  document.body.insertBefore(container,form);
+  var trello=document.getElementsByClassName('trello')[0];
+  trello.insertBefore(container,form);
 
   container.style.display="inline-block";
   var newClick = document.createElement("a");
   newClick.setAttribute("id","newClick");
+  newClick.setAttribute("href","#")
   var tarea= document.createTextNode("añadir tarea");
   newClick.appendChild(tarea);
   container.appendChild(newClick);
   newClick.addEventListener("click",añadir);
-
+  document.getElementById('container').classList.add("container");
   document.getElementById("textArea").value="";
 };
 
@@ -45,6 +48,7 @@ function añadir() {
   addArea.appendChild(buttonAdd);
   buttonAdd.setAttribute("type","button");
   buttonAdd.setAttribute("value","Añadir");
+  buttonAdd.classList.add("button");
   buttonAdd.style.display="block";
   buttonAdd.addEventListener("click", añadirTarea);
   var padre=document.getElementById('container')
@@ -53,10 +57,10 @@ function añadir() {
   };
 
 function añadirTarea() {
-  console.log("hola");
-  var textArea= document.getElementById("textAñadir").value;
+    var textArea= document.getElementById("textAñadir").value;
   var container=document.createElement("div");
     var title=document.createElement("p");
+    title.classList.add("tareas");
   var text= document.createTextNode(textArea);
   container.appendChild(title);
   title.appendChild(text);
