@@ -16,6 +16,7 @@ function addList() {
 function newList() {
   var textArea= document.getElementById("textArea").value;
   var container=document.createElement("div");
+  container.setAttribute("id","container");
   var title=document.createElement("p");
   var text= document.createTextNode(textArea);
   var form= document.getElementById("newForm")
@@ -25,14 +26,42 @@ function newList() {
 
   container.style.display="inline-block";
   var newClick = document.createElement("a");
+  newClick.setAttribute("id","newClick");
   var tarea= document.createTextNode("añadir tarea");
   newClick.appendChild(tarea);
   container.appendChild(newClick);
-  newClick.setAttribute("onclick","añadir()")
+  newClick.addEventListener("click",añadir);
+
+  document.getElementById("textArea").value="";
 };
 
-
 function añadir() {
-  alert("hola")
+  var addArea=document.createElement("div");
+  addArea.setAttribute("id","addTextArea");
+  var input =document.createElement("input");
+  input.setAttribute("id","textAñadir");
+  var buttonAdd =document.createElement("input");
+  addArea.appendChild(input);
+  addArea.appendChild(buttonAdd);
+  buttonAdd.setAttribute("type","button");
+  buttonAdd.setAttribute("value","Añadir");
+  buttonAdd.style.display="block";
+  buttonAdd.addEventListener("click", añadirTarea);
+  var padre=document.getElementById('container')
+  var replace=document.getElementById('newClick')
+  padre.replaceChild(addArea,replace);
+  };
 
+function añadirTarea() {
+  console.log("hola");
+  var textArea= document.getElementById("textAñadir").value;
+  var container=document.createElement("div");
+    var title=document.createElement("p");
+  var text= document.createTextNode(textArea);
+  container.appendChild(title);
+  title.appendChild(text);
+  var padre=document.getElementById("container");
+  var referencia=document.getElementById('addTextArea');
+  padre.insertBefore(container,referencia);
+  document.getElementById("textAñadir").value="";
 };
